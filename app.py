@@ -11,7 +11,7 @@ uploaded_file = st.file_uploader("Upload your monthly compliance CSV", type=["cs
 if uploaded_file:
     try:
     df = pd.read_csv(uploaded_file, encoding='utf-8')
-except UnicodeDecodeError:
+    except UnicodeDecodeError:
     df = pd.read_csv(uploaded_file, encoding='latin1')
 
 
