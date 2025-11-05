@@ -9,7 +9,11 @@ st.title("📊 Store-wise Monthly Compliance Dashboard")
 uploaded_file = st.file_uploader("Upload your monthly compliance CSV", type=["csv"])
 
 if uploaded_file:
-    df = pd.read_csv(uploaded_file)
+    try:
+    df = pd.read_csv(uploaded_file, encoding='utf-8')
+except UnicodeDecodeError:
+    df = pd.read_csv(uploaded_file, encoding='latin1')
+
 
     # Validate required columns
     required_cols = ['Store', 'Period', 'Compliance', 'الجودة والسلامة الغذائية', 'خدمات', 'نظافة']
