@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import plotly.express as px  # ✅ Make sure this line is correct — no closing parenthesis!
 
 st.set_page_config(page_title="Store Compliance Dashboard", layout="wide")
 st.title("📊 Store-wise Monthly Compliance Dashboard")
 
-# Upload CSV
+# CSV Upload
 uploaded_file = st.file_uploader("Upload your monthly compliance CSV", type=["csv"])
 
 if uploaded_file:
@@ -16,7 +16,7 @@ if uploaded_file:
     if not all(col in df.columns for col in required_cols):
         st.error("CSV must contain: Store, Period, Compliance, الجودة والسلامة الغذائية, خدمات, نظافة")
     else:
-        # Grouped Bar Chart: Store vs Compliance per Month
+        # Grouped Bar Chart
         st.subheader("📍 Monthly Compliance by Store")
         grouped_df = df.groupby(['Store', 'Period'])['Compliance'].mean().reset_index()
 
